@@ -5,9 +5,7 @@ services:
     image: cortezaproject/corteza:${VERSION}
     restart: always
     env_file: [ .env ]
-    depends_on: [ db ]
-    networks: [ proxy, internal ]
-    # Uncomment to use local fs for data persistence
+    depends_on: [ db ]        
     volumes:
       - "serverdata:/data"
     environment:
@@ -32,12 +30,7 @@ services:
       MYSQL_PASSWORD: dbpass
       # get the random generated password by running: docker-compose logs db | grep "GENERATED ROOT PASSWORD"
       MYSQL_RANDOM_ROOT_PASSWORD: random
-    healthcheck: { test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"], timeout: 20s, retries: 10 }
-    networks: [ internal ]
-
-networks:
-  internal: {}
-  proxy: { external: true }
+    healthcheck: { test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"], timeout: 20s, retries: 10 }    
 
 volumes:
   dbdata:
