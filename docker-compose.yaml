@@ -14,7 +14,7 @@ services:
       # VIRTUAL_HOST helps NginX proxy route traffic for specific virtual host to this container
       VIRTUAL_HOST:     ${DOMAIN}
       # LETSENCRYPT_HOST helps NginX LE companion pull and configure SSL certificates for your domain
-      LETSENCRYPT_HOST: ${DOMAIN}
+      #LETSENCRYPT_HOST: ${DOMAIN}
     ports: [ "18080:80" ]
 
   db:
